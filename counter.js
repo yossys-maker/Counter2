@@ -1,17 +1,28 @@
 (() => {
   const $counter = document.getElementById("js-counter");
+  const $message = document.getElementById("js-message");
+
+  const updateCounter = (newCount) => {
+    $counter.textContent = newCount;
+
+    if (newCount > 0 && newCount % 10 === 0) {
+      $message.textContent = "目標達成！" + newCount + " になりました！";
+    } else {
+      $message.textContent = "";
+    }
+  };
 
   const clickHandler = (e) => {
     const $targetButton = e.currentTarget;
-    let currentCount = parseInt($counter.textContent);
-    if($targetButton.textContent === "+"){
-      $counter.textContent = currentCount + 1;
+    const currentCount = parseInt($counter.textContent, 10);
+    if ($targetButton.textContent === "+") {
+      updateCounter(currentCount + 1);
     } else {
-      $counter.textContent = currentCount - 1;
+      updateCounter(currentCount - 1);
     }
-  }
+  };
 
   for (let index = 0; index < document.getElementsByClassName("js-button").length; index++) {
-      document.getElementsByClassName("js-button")[index].addEventListener("click", (e) => clickHandler(e))
+      document.getElementsByClassName("js-button")[index].addEventListener("click", clickHandler);
   }
 })();
