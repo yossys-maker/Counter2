@@ -18,7 +18,7 @@
     if ($targetButton.textContent === "+") {
       updateCounter(currentCount + 1);
     } else {
-      updateCounter(currentCount - 1);
+      updateCounter(Math.max(0, currentCount - 1));
     }
   };
 
